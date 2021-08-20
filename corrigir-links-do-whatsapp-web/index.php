@@ -85,7 +85,6 @@ function corrigir_links_whatsapp_web() {
                                 
                                 
                                 novo_link = link.attr('href').replace(old_numero, novo_numero);
-                                novo_link = novo_link.replace('api.whatsapp.com', 'web.whatsapp.com')
                                 
                                 // setamos o novo link
                                 link.attr('href', novo_link);
