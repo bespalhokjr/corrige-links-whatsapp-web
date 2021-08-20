@@ -6,7 +6,7 @@
     Description: corrige os links do whatsapp web (somente desktop), removendo o 9 digito do href
     Author: Paulo Roberto Bespalhok Junior
     Author URI: bespalhok.dev
-    Version: 1.0
+    Version: 2.0
 */
 
 // checamos se foi uma requisição do wordpress, para evitar acesso externo
@@ -20,7 +20,7 @@ function corrigir_links_whatsapp_web() {
                     // somente para desktop
                     if(jQuery(document).width() > 980){
 
-                    jQuery('a[href^="https://api.whatsapp.com"]').each(function(){
+                    jQuery('a[href^="https://api.whatsapp.com"], a[href^="http://api.whatsapp.com"], a[href^="//api.whatsapp.com"]').each(function(){
                         let link = jQuery(this);
                         let novo_numero = link.attr('href').split('=')[1].split('')
                         
@@ -45,7 +45,7 @@ function corrigir_links_whatsapp_web() {
                         }
                     });
 
-                    jQuery('a[href^="https://web.whatsapp.com"]').each(function(){
+                    jQuery('a[href^="https://web.whatsapp.com"], a[href^="http://web.whatsapp.com"], a[href^="//web.whatsapp.com"]').each(function(){
                         let link = jQuery(this);
                         let novo_numero = link.attr('href').split('=')[1].split('')
                         
@@ -70,7 +70,7 @@ function corrigir_links_whatsapp_web() {
                         }
                     });
 
-                    jQuery('a[href^="https://wa.me"]').each(function(){
+                    jQuery('a[href^="https://wa.me"], a[href^="http://wa.me"], a[href^="//wa.me"]').each(function(){
 
                         let link = jQuery(this);
                         let novo_numero = link.attr('href').split('.me/')[1].split('')
