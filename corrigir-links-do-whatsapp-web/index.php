@@ -6,7 +6,7 @@
     Description: corrige os links do whatsapp web (somente desktop), removendo o 9 digito do href
     Author: Paulo Roberto Bespalhok Junior
     Author URI: bespalhok.dev
-    Version: 3.0
+    Version: 5.0
 */
 
 // checamos se foi uma requisição do wordpress, para evitar acesso externo
@@ -22,16 +22,15 @@ function corrigir_links_whatsapp_web() {
 
                     jQuery('a[href^="https://api.whatsapp.com"], a[href^="http://api.whatsapp.com"], a[href^="//api.whatsapp.com"]').each(function(){
                         let link = jQuery(this);
-                        let novo_numero = link.attr('href').split('phone=')[1].split('')
+                        let novo_numero = link.attr('href').split('phone=')[1].split('');
 
                         novo_numero = novo_numero.join('');
-                        novo_numero = novo_numero.split('&')[0]
+                        novo_numero = novo_numero.split('&')[0];
 
                         let old_numero = novo_numero;
 
                         novo_numero = novo_numero.split('');
-                         
-                        console.log(novo_numero)
+
                         // pulamos se for ddd 11
                         if( novo_numero[2] !== '1' && novo_numero[3] !== '1'){
                             novo_numero.forEach((item)=>{
@@ -48,11 +47,14 @@ function corrigir_links_whatsapp_web() {
                                 
                                 
                                 novo_link = link.attr('href').replace(old_numero, novo_numero);
-                                novo_link.replace('api.whatsapp.com', 'web.whatsapp.com')
+                                novo_link = novo_link.replace('api.whatsapp.com', 'web.whatsapp.com')
                                 
                                 // setamos o novo link
-                                link.attr('href', novo_link)
-                            }   
+                                link.attr('href', novo_link);
+                            }else{
+                                novo_link = novo_link.replace('api.whatsapp.com', 'web.whatsapp.com')
+                                link.attr('href', novo_link);
+                            }
                         }
                     });
 
@@ -61,13 +63,12 @@ function corrigir_links_whatsapp_web() {
                         let novo_numero = link.attr('href').split('phone=')[1].split('')
 
                         novo_numero = novo_numero.join('');
-                        novo_numero = novo_numero.split('&')[0]
+                        novo_numero = novo_numero.split('&')[0];
 
                         let old_numero = novo_numero;
 
                         novo_numero = novo_numero.split('');
                          
-                        console.log(novo_numero)
                         // pulamos se for ddd 11
                         if( novo_numero[2] !== '1' && novo_numero[3] !== '1'){
                             novo_numero.forEach((item)=>{
@@ -84,10 +85,10 @@ function corrigir_links_whatsapp_web() {
                                 
                                 
                                 novo_link = link.attr('href').replace(old_numero, novo_numero);
-                                novo_link.replace('api.whatsapp.com', 'web.whatsapp.com')
+                                novo_link = novo_link.replace('api.whatsapp.com', 'web.whatsapp.com')
                                 
                                 // setamos o novo link
-                                link.attr('href', novo_link)
+                                link.attr('href', novo_link);
                             }   
                         }
                     });
@@ -125,14 +126,14 @@ function corrigir_links_whatsapp_web() {
 
                                 let novo_link = 'https://web.whatsapp.com/send?phone=' + novo_numero + old_text
                                 
-                                link.attr('href', novo_link)
+                                link.attr('href', novo_link);
 
                             }else{
                                 // se não houver o 9 digito
                                 // apenas trocamos o link no desktop para abrir a tela diretamente
                                 novo_numero = novo_numero.join('');
                                 let novo_link = 'https://web.whatsapp.com/send?phone=' + novo_numero;
-                                link.attr('href', novo_link)
+                                link.attr('href', novo_link);
                             }
                         }else{
                             // se for ddd 11
